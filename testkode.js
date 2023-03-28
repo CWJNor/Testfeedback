@@ -235,11 +235,10 @@ function openWindow(mailtoLink) {
 
 function closeNewWindow() {
   if (newwindow && !newwindow.closed) {
-    newwindow.close(); // Remove event listener
+    newwindow.close();
     window.focus();
   }
 }
-
 let feedbackknap = document.querySelector("#feedback");
 
 feedbackknap.addEventListener("click", function () {
@@ -284,6 +283,16 @@ feedbackknap.addEventListener("click", function () {
 });
 
 
+//Kampagne-knap
+let Kampagneknap=document.querySelector("#btn2");
+Kampagneknap.addEventListener("click",function(){
+    Swal.fire({
+        customClass:"kampagne",
+        title: 'Kampagner',
+        html: '<img src="kampagner.png">',
+        confirmButtonText: 'OK'
+      });
+})
 
 
 //Tilføj kanaler
