@@ -235,9 +235,7 @@ function openWindow(mailtoLink) {
 
 function closeNewWindow() {
   if (newwindow && !newwindow.closed) {
-    newwindow.close();
-    newwindow=null;
-    document.removeEventListener('visibilitychange', handleVisibilityChange); // Remove event listener
+    newwindow.close(); // Remove event listener
     window.focus();
   }
 }
