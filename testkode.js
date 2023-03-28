@@ -246,33 +246,32 @@ feedbackknap.addEventListener("click", function () {
   Swal.fire({
     title: 'Feedback',
     html: `<input type="text" id="feedbacknavn" class="swal2-input" placeholder="Navn">
-           <input type="text" id="feedbackemne" class="swal2-input" placeholder="Emne">
            <textarea type="text" id="feedbackbesked" class="swal2-input" placeholder="Feedback"></textarea>`,
     customClass: "swall_feed",
     confirmButtonText: 'Send feedback',
     focusConfirm: false,
     preConfirm: () => {
       const feedbacknavn = Swal.getPopup().querySelector('#feedbacknavn').value;
-      const feedbackemne = Swal.getPopup().querySelector('#feedbackemne').value;
       const feedbackbesked = Swal.getPopup().querySelector('#feedbackbesked').value;
+     
 
-      if (!feedbackbesked || !feedbackemne || !feedbacknavn) {
+      if (!feedbackbesked || !feedbacknavn) {
         Swal.showValidationMessage(`Udfyld venligst alle felter`);
         return false;
       }
 
-      let recipient = 'clajes@norlys.dk';
-      let subject = feedbackemne;
+      let recipient = 'torsch@norlys.dk; clajes@norlys.dk';
       let body = feedbackbesked;
+      let subject="Feedback fra Prisberegneren: "+feedbacknavn;
 
-      let mailtoLink = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+      let mailtoLink = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=Feedback til prisberegneren:%0A%0A' + encodeURIComponent(body);
       newwindow = openWindow(mailtoLink);
 
-      return { feedbacknavn: feedbacknavn, feedbackbesked: feedbackbesked, feedbackemne: feedbackemne }
+      return { feedbacknavn: feedbacknavn, feedbackbesked: feedbackbesked}
     }
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire({title:"Nyt mailvindue åbner <br> Tak for din feedback!"})
+      Swal.fire({title:"Nyt mailvindue åbner. <br> Tak for din feedback!"})
     }
   });
 
