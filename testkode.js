@@ -246,7 +246,6 @@ feedbackknap.addEventListener("click", function () {
   Swal.fire({
     title: 'Feedback',
     html: `<input type="text" id="feedbacknavn" class="swal2-input" placeholder="Navn">
-           <input type="email" id="feedbackemail" class="swal2-input" placeholder="Email">
            <input type="text" id="feedbackemne" class="swal2-input" placeholder="Emne">
            <textarea type="text" id="feedbackbesked" class="swal2-input" placeholder="Feedback"></textarea>`,
     customClass: "swall_feed",
@@ -254,11 +253,10 @@ feedbackknap.addEventListener("click", function () {
     focusConfirm: false,
     preConfirm: () => {
       const feedbacknavn = Swal.getPopup().querySelector('#feedbacknavn').value;
-      const feedbackemail = Swal.getPopup().querySelector('#feedbackemail').value;
       const feedbackemne = Swal.getPopup().querySelector('#feedbackemne').value;
       const feedbackbesked = Swal.getPopup().querySelector('#feedbackbesked').value;
 
-      if (!feedbackbesked || !feedbackemail || !feedbackemne || !feedbacknavn) {
+      if (!feedbackbesked || !feedbackemne || !feedbacknavn) {
         Swal.showValidationMessage(`Udfyld venligst alle felter`);
         return false;
       }
@@ -270,11 +268,11 @@ feedbackknap.addEventListener("click", function () {
       let mailtoLink = 'mailto:' + recipient + '?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
       newwindow = openWindow(mailtoLink);
 
-      return { feedbacknavn: feedbacknavn, feedbackbesked: feedbackbesked, feedbackemail: feedbackemail, feedbackemne: feedbackemne }
+      return { feedbacknavn: feedbacknavn, feedbackbesked: feedbackbesked, feedbackemne: feedbackemne }
     }
   }).then((result) => {
     if (result.isConfirmed) {
-      Swal.fire({title:"her"})
+      Swal.fire({title:"Nyt mailvindue åbner <br> Tak for din feedback!"})
     }
   });
 
@@ -851,13 +849,13 @@ let YouPfunc=function(){
             return priser[0]+YouPstream+" kr."+" (10 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[0]+" kr. (ekskl. "+streamlist.join(", ")+")";
         }
         if (YouP<=20){
-            return priser[1]+YouPstream+" kr."+" (10 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[1]+" kr. (ekskl. "+streamlist.join(", ")+")";
+            return priser[1]+YouPstream+" kr."+" (20 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[1]+" kr. (ekskl. "+streamlist.join(", ")+")";
         }
         if (YouP<=30){
-            return priser[2]+YouPstream+" kr."+" (10 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[2]+" kr. (ekskl. "+streamlist.join(", ")+")";
+            return priser[2]+YouPstream+" kr."+" (30 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[2]+" kr. (ekskl. "+streamlist.join(", ")+")";
         }
         if (YouP<=40){
-            return priser[3]+YouPstream+" kr."+" (10 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[3]+" kr. (ekskl. "+streamlist.join(", ")+")";
+            return priser[3]+YouPstream+" kr."+" (40 point)"+" ("+YouP+" point brugt)"+" (inkl. tilkøb af "+streamlist.join(", ")+")"+"<br>"+priser[3]+" kr. (ekskl. "+streamlist.join(", ")+")";
         }
         else{
             let p=(YouP-40)*10;
